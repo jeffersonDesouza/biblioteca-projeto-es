@@ -1,0 +1,18 @@
+<div class="loggin-class text-right">
+    <form ng-hide="$ctrl.isLoggedIn">
+        <div class="col-md-4 text-right">
+            <input class="form-control" type="text" placeholder="Matrícula" ng-model="$ctrl.username">
+        </div>
+        <div class="col-md-4 text-right">
+            <input class="form-control" type="password" placeholder="Senha" ng-model="$ctrl.password">
+        </div>
+
+        <button class="btn btn-default " ng-click="$ctrl.logar()">Login</button>
+    </form>
+
+
+    <div class="text-right" ng-show="$ctrl.isLoggedIn">
+        <i>Bem vindo {{$ctrl.getNomeDoUsuarioLogado()}}</i>
+        <button class="btn btn-default btn-sm" ng-click="$ctrl.logOut()" ui-sref="home">Sair</button>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<form>
+
+    <label for="titulo">Título:</label>
+
+    <div class="form-group">
+        <input id="titulo" type="text" ng-model="$ctrl.novoContainerLivro.livro.titulo" class="form-control">
+    </div>
+
+
+
+
+
+
+
+
+    <label for="autor">Autor: </label>
+    <div class="form-group">
+        <input id="autor" type="text" ng-model="$ctrl.novoContainerLivro.livro.autor" class="form-control">
+    </div>
+
+
+    <label for="departamento">Departamento:</label>
+    <div class="form-group">
+        <input id="departamento" type="text" ng-model="$ctrl.novoContainerLivro.livro.curso" class="form-control">
+    </div>
+
+    <label for="paginas">Páginas:</label>
+    <div class="form-group">
+        <input id="paginas" type="number" ng-model="$ctrl.novoContainerLivro.livro.paginas" class="form-control">
+    </div>
+
+    <label for="tipo">Tipo:</label>
+    <div class="form-group">
+        <input id="tipo" type="text" ng-model="$ctrl.novoContainerLivro.livro.tipo" class="form-control">
+    </div>
+
+    <label for="quantidade">Quantidade:</label>
+    <div class="form-group">
+        <input id="quantidade" type="number" ng-model="$ctrl.novoContainerLivro.quantidade" class="form-control">
+    </div>
+
+    <div class="col-md-9 text-center">
+        <ul>
+            <label>Palavra Chave:</label>
+
+            <li ng-repeat="palavra in $ctrl.novoContainerLivro.livro.palavrasChaves">
+
+                <label>{{palavra}}</label><button class="bnt btn-sm-danger">X</button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-md-9 text-center" ng-show="$ctrl.mostarAddPalavraChave">
+        <input type="text" placeholder="Informe uma palavra chave" ng-model="palavraAdd">
+
+        <button class="btn btn-info" ng-click="$ctrl.adicionarPalavrasChaves(palavraAdd)">
+            Salvar
+        </button>
+    </div>
+
+    <br/>
+    <p></p>
+    <div class="col-md-9 text-center">
+        <button class="btn btn-default btn-block"
+            ng-click="$ctrl.showAddPalavraChave()">+</button>
+    </div>
+
+
+
+    <p></p>
+    <p></p>
+
+
+    <div class="col-md-12 text-center">
+
+    <button class="btn btn-default"
+                ng-click="$ctrl.salvarNovoContainerLivro()">Salvar Livro</button>
+    </div>
+
+</form>

@@ -1,0 +1,16 @@
+<p>Informe o Título do Livro</p>
+
+<input type="search" placeholder="Título do Livro" class="form-group" ng-model="$crtl.searchTitulo">
+
+<ul>
+    <li ng-repeat="livroContainer in $ctrl.livros">
+
+        <a class="lista-link" ui-sref="containerLivroDetalhes({livroId:livroContainer._id})">
+
+            Título: {{livroContainer.livro.titulo}}
+            Autor: {{livroContainer.livro.autor}}
+            Quantidade: {{livroContainer.quantidade}}
+        </a>
+    </li>
+</ul>
+

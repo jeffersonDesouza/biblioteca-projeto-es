@@ -1,0 +1,45 @@
+<div>
+
+	<h1>HOME</h1>
+</div>
+
+
+<form>
+
+	<label for="nome">Nome:</label>
+	<div class="form-group">
+		<input id="nome" type="text" ng-model="$ctrl.novoUser.profile.name" class="form-control">
+	</div>
+
+	<label for="matri">Matrícula: </label>
+	<div class="form-group">
+		<input id="matri" type="text" ng-model="$ctrl.novoUser.username" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<input id="prof" type="radio" ng-model="$ctrl.categoriaUsuario" value="professor">
+		<label for="prof">Professor</label>
+		<input id="aluno" type="radio" ng-model="$ctrl.categoriaUsuario" value="aluno">
+		<label for="aluno">Aluno</label>
+		<input id="func" type="radio" ng-model="$ctrl.categoriaUsuario" value="funcionario">
+		<label for="func">Funcionário</label>
+	</div>
+
+	<div class="form-group" ng-hide="$ctrl.isAdicionandoFuncionario()">
+		<label for="curso">Curso:</label>
+		<input id="curso" type="text" ng-model="$ctrl.curso" class="form-control">
+	</div>
+
+	<div class="form-group" ng-show="$ctrl.isAdicionandoFuncionario()">
+		<label for="curso">Ocupação:</label>
+		<input id="curso" type="text" ng-model="$ctrl.curso" class="form-control">
+	</div>
+
+
+	<br>
+
+	<div class="form-group">
+		<input type="password" placeholder="Senha" ng-model="$ctrl.novoUser.password" class="form-control">
+		<button class="btn btn-primary" ng-click="$ctrl.saveUser()">Criar Usuário</button>
+	</div>
+</form>

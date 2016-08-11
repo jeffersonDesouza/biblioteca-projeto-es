@@ -1,0 +1,25 @@
+    <form>
+        <div class="form-group">
+
+            <input type="search" placeholder="Nome do Usuário" ng-model="$ctrl.searchNome"
+            class="form-control">
+
+            <input type="search" ng-model="$ctrl.searchMatricula" placeholder="Matrícula"
+            class="form-control">
+
+        </div>
+    </form>
+
+
+    <ul>
+        USUÁRIOS
+        <li ng-repeat="usuario in $ctrl.usuarios | filter: $ctrl.searchNome">
+        <a ui-sref="usuarioDetalhes({usuarioId:usuario._id})">
+            MATRÍCULA: {{usuario.matricula}} - NOME: {{usuario.name}}
+        </a>
+
+
+         <usuario-remove usuario = "usuario"></usuario-remove>
+
+     </li>
+ </ul>

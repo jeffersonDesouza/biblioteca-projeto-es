@@ -1,0 +1,167 @@
+<div>
+    <h1>DETALHES DO USUÁRIO</h1>
+    <form>
+        <div class="row form-group">
+
+            <div class="col-md-9">
+                <label ng-hide="$ctrl.mostrarInputNome">Nome: {{$ctrl.usuario.name}}</label>
+                <input ng-show="$ctrl.mostrarInputNome" type="text" ng-model="$ctrl.usuario.name">
+            </div>
+
+            <div class="col-md-3 text-right">
+                <button ng-click="$ctrl.toggleInputNome()" class="btn btn-info btn-sm"
+                ng-hide="$ctrl.mostrarInputNome">Editar</button>
+                <button ng-click="$ctrl.toggleInputNome()" class="btn btn-info btn-sm"
+                ng-show="$ctrl.mostrarInputNome">OK</button>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-md-9">
+                <label ng-hide="$ctrl.mostrarInputMatricula">Matrícula: {{$ctrl.usuario.matricula}}</label>
+                <input ng-show="$ctrl.mostrarInputMatricula" type="text" ng-model="$ctrl.usuario.matricula">
+            </div>
+
+            <div class="col-md-3 text-right">
+                <button ng-click="$ctrl.toggleInputMatricula()" class="btn btn-info btn-sm"
+                ng-hide="$ctrl.mostrarInputMatricula">Editar</button>
+
+                <button ng-click="$ctrl.toggleInputMatricula()" class="btn btn-info btn-sm"
+                ng-show="$ctrl.mostrarInputMatricula">OK</button>
+            </div>
+        </div>
+
+        <div class="row form-group">
+
+            <div class="col-md-9">
+                <label ng-hide="$ctrl.mostrarInputCurso">Curso: {{$ctrl.usuario.curso}}</label>
+                <input ng-show="$ctrl.mostrarInputCurso" type="text" ng-model="$ctrl.usuario.curso">
+            </div>
+
+            <div class="col-md-3 text-right">
+                <button ng-click="$ctrl.toggleInputCurso()" class="btn btn-info btn-sm"
+                ng-hide="$ctrl.mostrarInputCurso">Editar</button>
+
+                <button ng-click="$ctrl.toggleInputCurso()" class="btn btn-info btn-sm"
+                ng-show="$ctrl.mostrarInputCurso">OK</button>
+            </div>
+        </div>
+
+        <div class="row form-group">
+
+            <div class="col-md-9">
+            <label ng-hide="$ctrl.mostrarInputCategoria">Categoria: {{$ctrl.usuario.categoriaUsuario}}</label>
+
+                <div class="form-group" ng-show="$ctrl.mostrarInputCategoria" >
+                    <input id="prof" type="radio" ng-model="$ctrl.usuario.categoriaUsuario" value="professor">
+                    <label for="prof">Professor</label>
+                    <input id="aluno" type="radio" ng-model="$ctrl.usuario.categoriaUsuario" value="aluno">
+                    <label for="aluno">Aluno</label>
+                    <input id="func" type="radio" ng-model="$ctrl.usuario.categoriaUsuario" value="funcionario">
+                    <label for="func">Funcionário</label>
+                </div>
+            </div>
+
+            <div class="col-md-3 text-right">
+                <button ng-click="$ctrl.toggleInputCategoria()" class="btn btn-info btn-sm"
+                ng-hide="$ctrl.mostrarInputCategoria">Editar</button>
+
+                <button ng-click="$ctrl.toggleInputCategoria()" class="btn btn-info btn-sm"
+                ng-show="$ctrl.mostrarInputCategoria">OK</button>
+            </div>
+        </div>
+
+        <div class="row form-group">
+
+            <div class="col-md-9">
+                <label>Livros em Posse: {{$ctrl.usuario.emprestimos.length}}</label>
+            </div>
+
+        </div>
+
+        <div class="row form-group">
+
+            <div class="col-md-9">
+                <label>Multas: {{$ctrl.usuario.multas | currency: "R$ ": 2}}</label>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <button ng-click="$ctrl.salvar()" class="btn btn-default">Salvar Alterações</button>
+        </div>
+
+
+
+    </form>
+
+
+<div>
+    <br/>
+    <div>
+        <h3>Livros em posse: </h3>
+    </div>
+
+    <div class="row">
+        <ul>
+            <li ng-repeat="emprestimo in $ctrl.usuario.emprestimos">
+                <div>
+                    <p>Título: {{emprestimo.titulo}}</p>
+                    <p>Data de Emprestimo: {{emprestimo.dataEmprestimo | date: "dd.MM.y"}}</p>
+                    <p>Data de Devolução: {{emprestimo.dataDevolucao | date: "dd.MM.y"}}</p>
+                    <p>Dias de Atraso: {{emprestimo.diasAtrasados}}</p>
+                    <p>Multa: {{emprestimo.multa | currency : "R$ ": 2}}</p>
+                </div>
+
+                <button ng-click="$ctrl.devolverLivro(emprestimo)">Devolver</button>
+            </li>
+        </ul>
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+<form id="empresta-livro-form">
+      <div class="form-group">
+        <h3>EMPRESTAR LIVRO</h3>
+
+        <input ng-show="$ctrl.usuario.podePegarLivros" type="text"
+          ng-model="$ctrl.searchTitulo" placeholder="Título do Livro">
+
+        <label ng-hide="$ctrl.podeEmprestarLivro">
+            Usuário não pode tomar livros emprestados
+        </label>
+
+    </div>
+
+
+    <div class="col-md-12">
+        <ul>
+            <li ng-repeat="containerlivro in $ctrl.livros | filter: $ctrl.searchTitulo">
+                <div class="col-md-9">
+                    <label>
+                        {{containerlivro.livro.titulo}}
+                    </label>
+                    <label>
+                        {{containerlivro.livro.autor}}
+                    </label>
+
+                </div>
+                <div class="col-md-3">
+
+                    <button ng-click="$ctrl.emprestarLivro(containerlivro)" class="btn btn-info btn-sm"
+                    ng-show="containerLivro.disponivel">Emprestar</button>
+                </div>
+
+            </li>
+
+
+        </ul>
+    </div>
+
+</form>
