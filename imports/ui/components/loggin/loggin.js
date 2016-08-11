@@ -26,14 +26,6 @@ class Loggin{
     }
 
     getNomeDoUsuarioLogado(){
-      Meteor.call("getNomeUsuarioLogadoMethod", Meteor.userId(), this.nomeUsuario, function(error, result){
-        if(error){
-          console.log("error", error);
-        }
-        if(result){
-
-        }
-      });
 
         console.log("JOÃO");
         return Meteor.users.findOne(Meteor.userId()).profile.name;

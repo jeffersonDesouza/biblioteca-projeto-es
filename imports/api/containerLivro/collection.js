@@ -1,17 +1,17 @@
 import {Mongo} from 'meteor/mongo';
 
 export const ContainersLivros = new Mongo.Collection('containersLivros',{
-    transform: function(document){
+    transform: function(doc){
 
-      document.disponivel = isLivroDisponivel(document);
-
-      return document;
+      doc.disponivel = isLivroDisponivel(doc);
+      console.log('Disponível: ',isLivroDisponivel(doc));
+      return doc;
     }
 });
 
-function isLivroDisponivel(document){
-	if(document.quantidade > 1){
-		return true;
+function isLivroDisponivel(doc){
+	if(doc.quantidade <= 1){
+		return false;
 	}
-	return false;
+	return true;
 }

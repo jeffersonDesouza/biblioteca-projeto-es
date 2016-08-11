@@ -85,7 +85,12 @@ class UsuarioDetalhes{
 
             let dataDeDevolucao = new Date(dataDeEmprestimo.getTime() + umMinutoEmMileSegundos);
 
+
             containerLivro.quantidade--;
+
+            if(  containerLivro.quantidade <=1){
+              containerLivro.disponivel = false;
+            }
 
             let emprestimoAux = {
                 'idLivro': containerLivro._id,
@@ -96,16 +101,17 @@ class UsuarioDetalhes{
                 'multa':0
             }
 
-
-            Usuarios.update({_id:this.usuario._id}, {
+            Usuarios.update({_id:this.usuario._id},
+              {
                 $push:{'emprestimos':emprestimoAux}
-            }
+              }
             );
 
             ContainersLivros.update(
                 {_id:containerLivro._id}, {
                     $set:{
-                        quantidade: containerLivro.quantidade
+                        quantidade: containerLivro.quantidade,
+                        disponivel: containerLivro.disponivel
                     }
                 });
 
@@ -121,6 +127,9 @@ class UsuarioDetalhes{
         let multaDescontada = this.usuario.multas - emprestimo.multa;
 
         containerLivro.quantidade++;
+        if(containerLivro.quantidade > 1){
+          containerLivro.disponivel = true;
+        }
 
         Usuarios.update({_id:this.usuario._id}, {
 
@@ -134,7 +143,8 @@ class UsuarioDetalhes{
         ContainersLivros.update(
             {_id:containerLivro._id}, {
              $set:{
-                quantidade: containerLivro.quantidade
+                quantidade: containerLivro.quantidade,
+                disponivel: containerLivro.disponivel
             }
         });
 
