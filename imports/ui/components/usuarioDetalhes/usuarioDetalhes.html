@@ -95,6 +95,7 @@
     </form>
 
 
+<div ng-show="$ctrl.isFuncionario()">
 
     <div class="row" ng-hide="$ctrl.usuario.podePegarLivros">
       <h3>
@@ -138,6 +139,7 @@
         </div>
       </form>
     </div>
+  </div>
 
 
 <div>
@@ -157,7 +159,9 @@
                     <p>Multa: {{emprestimo.multa | currency : "R$ ": 2}}</p>
                 </div>
 
-                <button ng-click="$ctrl.devolverLivro(emprestimo)">Devolver</button>
+                <button ng-click="$ctrl.devolverLivro(emprestimo)" ng-show="$ctrl.isFuncionario()">Devolver</button>
+                <button ng-click="" ng-show="$ctrl.isFuncionario()">Renovar-implementar</button>
+
             </li>
         </ul>
 
