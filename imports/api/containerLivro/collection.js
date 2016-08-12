@@ -4,7 +4,6 @@ export const ContainersLivros = new Mongo.Collection('containersLivros',{
     transform: function(doc){
 
       doc.disponivel = isLivroDisponivel(doc);
-      console.log('Disponível: ',isLivroDisponivel(doc));
       return doc;
     }
 });

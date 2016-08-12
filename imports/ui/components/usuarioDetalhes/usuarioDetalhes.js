@@ -22,7 +22,7 @@ class UsuarioDetalhes{
         this.subscribe('usuarios',()=>{},{
           onStart: function () {
 
-            console.log("Nova pesquisa");
+
           }
         });
 
@@ -44,18 +44,23 @@ class UsuarioDetalhes{
             },
             livros(){
                 this.getReactively('searchTitulo');
+
+              if(this.searchNome !== ''){
                 return ContainersLivros.find();
+              }
+              else{
+                  return [];
+              }
             },
         });
       this.getReactively('podeEmprestarLivro');
     }
 
     atualizarPodeEmprestarLivro(usuario){
-        if(usuario.emprestimos.length > 3){
+        if(usuario.emprestimos.length >= 3){
             podeEmprestarLivro = false;
         }
     }
-
 
 
     salvar(){
@@ -72,6 +77,14 @@ class UsuarioDetalhes{
     }
 
 
+    jaTemEsteLivro(containerlivro, emprestimosArray){
+    	for(let i=0; i<emprestimosArray.length; i++){
+    		if(emprestimosArray[i].titulo === containerlivro.livro.titulo){
+    			return true;
+    		}
+    	}
+	      return false;
+    }
 
     emprestarLivro(containerLivro){
 
@@ -88,7 +101,7 @@ class UsuarioDetalhes{
 
             containerLivro.quantidade--;
 
-            if(  containerLivro.quantidade <=1){
+            if(containerLivro.quantidade <=1){
               containerLivro.disponivel = false;
             }
 

@@ -91,10 +91,52 @@
         <div class="row">
             <button ng-click="$ctrl.salvar()" class="btn btn-default">Salvar Alterações</button>
         </div>
-
-
-
     </form>
+
+
+
+    <div class="row" ng-hide="$ctrl.usuario.podePegarLivros">
+      <h3>
+        Atenção! <small>No momento este(a) Usuário(a) não pode tomar livros emprestados</small>
+      </h3>
+    </div>
+
+    <div class="row" ng-show="$ctrl.usuario.podePegarLivros">
+      <form id="empresta-livro-form">
+        <div class="form-group">
+          <h3>EMPRESTAR LIVRO</h3>
+          <input type="text" ng-model="$ctrl.searchTitulo" placeholder="Informe o Título do Livro">
+        </div>
+
+        <div class="col-md-12">
+          <ul>
+            <li ng-repeat="containerlivro in $ctrl.livros | filter: $ctrl.searchTitulo">
+              <div class="col-md-9">
+                <label>
+                  {{containerlivro.livro.titulo}}
+                </label>
+                <label>
+                  {{containerlivro.livro.autor}}
+                </label>
+                <label>
+                  - Disponível: {{containerlivro.disponivel}}
+                </label>
+                <label>
+                  - Quantidade:  {{containerlivro.quantidade}}
+                </label>
+
+              </div>
+              <div class="col-md-3">
+                <div ng-hide="$ctrl.jaTemEsteLivro(containerlivro, $ctrl.usuario.emprestimos)">
+                  <button ng-click="$ctrl.emprestarLivro(containerlivro)" class="btn btn-info btn-sm"
+                  ng-show="containerlivro.disponivel">Emprestar</button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </form>
+    </div>
 
 
 <div>
@@ -123,51 +165,3 @@
 </div>
 
 </div>
-
-
-
-<form id="empresta-livro-form">
-      <div class="form-group">
-        <h3>EMPRESTAR LIVRO</h3>
-
-        <input ng-show="$ctrl.usuario.podePegarLivros" type="text"
-          ng-model="$ctrl.searchTitulo" placeholder="Título do Livro">
-
-        <label ng-hide="$ctrl.podeEmprestarLivro">
-            Usuário não pode tomar livros emprestados
-        </label>
-
-    </div>
-
-
-    <div class="col-md-12">
-        <ul>
-            <li ng-repeat="containerlivro in $ctrl.livros | filter: $ctrl.searchTitulo">
-                <div class="col-md-9">
-                    <label>
-                        {{containerlivro.livro.titulo}}
-                    </label>
-                    <label>
-                        {{containerlivro.livro.autor}}
-                    </label>
-                    <label>
-                         - Disponível: {{containerlivro.disponivel}}
-                    </label>
-                    <label>
-                         - Quantidade:  {{containerlivro.quantidade}}
-                    </label>
-
-                </div>
-                <div class="col-md-3">
-
-                    <button ng-click="$ctrl.emprestarLivro(containerlivro)" class="btn btn-info btn-sm"
-                    ng-show="containerlivro.disponivel">Emprestar</button>
-                </div>
-
-            </li>
-
-
-        </ul>
-    </div>
-
-</form>
