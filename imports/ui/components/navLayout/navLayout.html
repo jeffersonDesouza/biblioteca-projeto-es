@@ -1,8 +1,6 @@
-
-
 <div class="nav-layout-class">
 
-    <div class="perfil-link">
+    <div >
         <a ui-sref="home">Meu Perfil</a>
     </div>
 
@@ -10,15 +8,15 @@
         <a ui-sref="livros">Pesquisar Livro</a>
     </div>
 
-    <div>
+    <div ng-show="$ctrl.isFuncionario()">
         <a ui-sref="add-livro">Adicioanr Livro</a>
     </div>
 
-    <div>
+    <div ng-show="$ctrl.isFuncionario()">
         <a ui-sref="usuario-add">Adicionar Usuário</a>
     </div>
 
-    <div>
+    <div ng-show="$ctrl.isFuncionario()">
         <a ui-sref="usuarios">Pesquisar Usuário</a>
     </div>
 
