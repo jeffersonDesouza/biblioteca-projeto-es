@@ -1,5 +1,6 @@
 <div>
     <h1>DETALHES DO USUÁRIO</h1>
+
     <form>
         <div class="row form-group">
 
@@ -8,7 +9,7 @@
                 <input ng-show="$ctrl.mostrarInputNome" type="text" ng-model="$ctrl.usuario.name">
             </div>
 
-            <div class="col-md-3 text-right">
+            <div class="col-md-3 text-right" ng-show="$ctrl.isFuncionario()">
                 <button ng-click="$ctrl.toggleInputNome()" class="btn btn-info btn-sm"
                 ng-hide="$ctrl.mostrarInputNome">Editar</button>
                 <button ng-click="$ctrl.toggleInputNome()" class="btn btn-info btn-sm"
@@ -22,7 +23,7 @@
                 <input ng-show="$ctrl.mostrarInputMatricula" type="text" ng-model="$ctrl.usuario.matricula">
             </div>
 
-            <div class="col-md-3 text-right">
+            <div class="col-md-3 text-right" ng-show="$ctrl.isFuncionario()">
                 <button ng-click="$ctrl.toggleInputMatricula()" class="btn btn-info btn-sm"
                 ng-hide="$ctrl.mostrarInputMatricula">Editar</button>
 
@@ -38,7 +39,7 @@
                 <input ng-show="$ctrl.mostrarInputCurso" type="text" ng-model="$ctrl.usuario.curso">
             </div>
 
-            <div class="col-md-3 text-right">
+            <div class="col-md-3 text-right" ng-show="$ctrl.isFuncionario()">
                 <button ng-click="$ctrl.toggleInputCurso()" class="btn btn-info btn-sm"
                 ng-hide="$ctrl.mostrarInputCurso">Editar</button>
 
@@ -62,7 +63,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3 text-right">
+            <div class="col-md-3 text-right" ng-show="$ctrl.isFuncionario()">
                 <button ng-click="$ctrl.toggleInputCategoria()" class="btn btn-info btn-sm"
                 ng-hide="$ctrl.mostrarInputCategoria">Editar</button>
 
@@ -89,7 +90,7 @@
 
 
         <div class="row">
-            <button ng-click="$ctrl.salvar()" class="btn btn-default">Salvar Alterações</button>
+            <button ng-click="$ctrl.salvar()" class="btn btn-default" ng-show="$ctrl.isFuncionario()">Salvar Alterações</button>
         </div>
     </form>
 

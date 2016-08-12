@@ -18,11 +18,10 @@ class UsuarioDetalhes{
 
         this.emprestimosArray;
         this.usuarioId = $stateParams.usuarioId;
+        this.searchTitulo = '';
 
         this.subscribe('usuarios',()=>{},{
           onStart: function () {
-
-
           }
         });
 
@@ -45,7 +44,7 @@ class UsuarioDetalhes{
             livros(){
                 this.getReactively('searchTitulo');
 
-              if(this.searchNome !== ''){
+              if(this.searchTitulo !== ''){
                 return ContainersLivros.find();
               }
               else{
@@ -60,6 +59,15 @@ class UsuarioDetalhes{
         if(usuario.emprestimos.length >= 3){
             podeEmprestarLivro = false;
         }
+    }
+
+    isFuncionario(){
+        let username = Meteor.users.findOne(Meteor.userId()).username;
+
+        if(Usuarios.findOne({matricula:username}).categoriaUsuario === 'funcionario'){
+            return true;
+        }
+        return false;
     }
 
 
