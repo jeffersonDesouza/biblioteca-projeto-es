@@ -4,6 +4,7 @@ import uiRouter from 'angular-ui-router';
 import {Meteor} from 'meteor/meteor';
 
 
+import {Usuarios} from '../../../../api/usuarios/index.js';
 
 export default angular.module('containerLivroAdd',[
     angularMeteor,
@@ -18,11 +19,15 @@ function config($stateProvider){
         template: '<container-livro-add></container-livro-add>',
         resolve:{
             currentUser($q){
-                if(usuarioNaoLogado()){
-                    return $q.reject('NOT_AUTORIZED');
-                }else{
-                    $q.resolve();
-                }
+
+              if(usuarioNaoLogado() || !isFuncionario()){
+                  return $q.reject('NOT_AUTORIZED');
+              }else{
+                  $q.resolve();
+              }
+
+
+
             }
         }
 
@@ -32,4 +37,15 @@ function config($stateProvider){
 
 function usuarioNaoLogado(){
     return Meteor.userId() === null;
+}
+
+function isFuncionario(){
+    Meteor.subscribe("usuarios");
+    let username = Meteor.users.findOne(Meteor.userId()).username;
+    console.log('categoria: ',Usuarios.findOne({matricula:username}).categoriaUsuario);
+
+    if(Usuarios.findOne({matricula:username}).categoriaUsuario === "funcionario"){
+      return true;
+    }
+    return false;
 }

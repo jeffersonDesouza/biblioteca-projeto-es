@@ -11,17 +11,20 @@ export default angular.module('usuarioDetalhes', [
 
 function config($stateProvider){
     'ngInject';
-    
+
     $stateProvider.state('usuarioDetalhes',{
         url:'/usuarios/:usuarioId',
         template: '<usuario-detalhes></usuario-detalhes>',
         resolve:{
             currentUser($q){
-                if(usuarioNaoLogado()){
-                    return $q.reject('NOT_AUTORIZED');
-                }else{
-                    $q.resolve();
-                }
+              /*
+              if(usuarioNaoLogado() || !isFuncionario()){
+                  return $q.reject('NOT_AUTORIZED');
+              }else{
+                  $q.resolve();
+              }*/
+
+                  $q.resolve();
             }
         }
 
@@ -32,4 +35,3 @@ function config($stateProvider){
 function usuarioNaoLogado(){
     return Meteor.userId() === null;
 }
-

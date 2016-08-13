@@ -23,7 +23,7 @@ export default angular.module('intemediarioApp',[
 
     headerLayout.name,
     navLayout.name,
- 
+
     homeLayout.name,
     loggin.name,
     usuarioAdd.name,
@@ -39,7 +39,7 @@ export default angular.module('intemediarioApp',[
 function config($locationProvider, $urlRouterProvider){
     'ngInject';
 
-    
+
 
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/home');
@@ -51,7 +51,6 @@ function run($rootScope, $state){
     $rootScope.$on('$stateChangeError',
         (event, toState, toParams, fromState, fromParams, error)=>{
 
-            
 
             if(error === 'NOT_AUTORIZED' || error ==='NAO_AUTORIZADO_ADD_USUARIO'){
                 console.log('logado',Meteor.userId());
@@ -64,20 +63,19 @@ function run($rootScope, $state){
 
                 $state.go('home');
             }
-            
-            
+
+
         });
 
+    /*
     $rootScope.$on('$stateChangeSuccess',
         (event, toState, toParams, fromState, fromParams, error)=>{
-            
-            
+
             if(!Meteor.userId()){
                 $state.go('home');
             }
 
 
-            
-
         });
+      */
 }
