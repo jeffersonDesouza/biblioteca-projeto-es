@@ -43,7 +43,6 @@ function usuarioNaoLogado(){
 function isFuncionario(){
     Meteor.subscribe("usuarios");
     let username = Meteor.users.findOne(Meteor.userId()).username;
-    console.log('categoria: ',Usuarios.findOne({matricula:username}).categoriaUsuario);
 
     if(Usuarios.findOne({matricula:username}).categoriaUsuario === "funcionario"){
       return true;

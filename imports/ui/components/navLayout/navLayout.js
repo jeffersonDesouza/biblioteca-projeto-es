@@ -19,6 +19,18 @@ class NavLayout{
       onStart: function () {
       }
     });
+
+    this.helpers({
+      usuario(){
+        //username no 'users'  é a matricula no 'usuarios'
+        let username = Meteor.users.findOne(Meteor.userId()).username;
+
+        return Usuarios.findOne({matricula:username});
+      }
+
+
+    });
+
   }
 
   isFuncionario(){

@@ -17,14 +17,13 @@ function config($stateProvider){
         template: '<usuario-detalhes></usuario-detalhes>',
         resolve:{
             currentUser($q){
-              /*
-              if(usuarioNaoLogado() || !isFuncionario()){
+
+              if(usuarioNaoLogado()){
                   return $q.reject('NOT_AUTORIZED');
               }else{
                   $q.resolve();
-              }*/
+              }
 
-                  $q.resolve();
             }
         }
 
@@ -34,4 +33,14 @@ function config($stateProvider){
 
 function usuarioNaoLogado(){
     return Meteor.userId() === null;
+}
+
+function isFuncionario(){
+    Meteor.subscribe("usuarios");
+    let username = Meteor.users.findOne(Meteor.userId()).username;
+
+    if(Usuarios.findOne({matricula:username}).categoriaUsuario === "funcionario"){
+      return true;
+    }
+    return false;
 }

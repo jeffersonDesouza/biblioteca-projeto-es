@@ -46,8 +46,6 @@ class UsuariosLista{
             usuarios(){
                 this.getReactively('searchNome');
 
-               
-
                 if(this.searchNome !== ''){
                     return Usuarios.find();
                 }
