@@ -1,6 +1,7 @@
 <div class="nav-layout-class">
 
-    <div >
+
+    <div>
         <a ui-sref="usuarioDetalhes({usuarioId:$ctrl.usuario._id})">Meu Perfil</a>
     </div>
 
@@ -8,16 +9,22 @@
         <a ui-sref="livros">Pesquisar Livro</a>
     </div>
 
-    <div ng-show="$ctrl.isFuncionario()">
-        <a ui-sref="add-livro">Adicioanr Livro</a>
-    </div>
+    
 
-    <div ng-show="$ctrl.isFuncionario()">
-        <a ui-sref="usuario-add">Adicionar Usuário</a>
-    </div>
+    <div ng-show="$ctrl.isLoggedIn">
 
-    <div ng-show="$ctrl.isFuncionario()">
-        <a ui-sref="usuarios">Pesquisar Usuário</a>
+      <div ng-show="$ctrl.isFuncionario()">
+          <a ui-sref="usuarios">Pesquisar Usuário</a>
+      </div>
+
+      <div ng-show="$ctrl.isFuncionario()">
+          <a ui-sref="add-livro">Adicioanr Livro</a>
+      </div>
+
+      <div ng-show="$ctrl.isFuncionario()">
+          <a ui-sref="usuario-add">Adicionar Usuário</a>
+      </div>
+
     </div>
 
 

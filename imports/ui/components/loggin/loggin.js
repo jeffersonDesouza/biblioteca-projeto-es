@@ -14,7 +14,7 @@ class Loggin{
         'ngInject';
         $reactive(this).attach($scope);
 
-        this.nomeUsuario = "JoSé";
+
 
 
         this.helpers({
@@ -27,7 +27,10 @@ class Loggin{
 
     getNomeDoUsuarioLogado(){
 
+      if(!!Meteor.userId()){
         return Meteor.users.findOne(Meteor.userId()).profile.name;
+      }
+      return '';
     }
 
 

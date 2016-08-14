@@ -31,7 +31,7 @@ class UsuarioDetalhes{
         this.mostrarInputMatricula = false;
         this.mostrarInputCurso = false;
         this.mostrarInputCategoria = false;
-        this.usuario;
+
 
         this.podeEmprestarLivro = true;
         this.numeroLivrosEmprestados = 0;

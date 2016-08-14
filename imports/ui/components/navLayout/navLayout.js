@@ -15,32 +15,42 @@ class NavLayout{
       'ngInject';
 
       $reactive(this).attach($scope);
-    this.subscribe('usuarios',()=>{},{
-      onStart: function () {
-      }
-    });
+
+
+    this.subscribe('usuarios');
 
     this.helpers({
       usuario(){
-        //username no 'users'  é a matricula no 'usuarios'
-        let username = Meteor.users.findOne(Meteor.userId()).username;
 
-        return Usuarios.findOne({matricula:username});
+        if(Meteor.userId()){
+          //username no 'users'  é a matricula no 'usuarios'
+          var username = Meteor.users.findOne(Meteor.userId()).username;
+
+          return Usuarios.findOne({matricula:username});
+        }
+        return null;
+      },
+      isLoggedIn(){
+        return !!Meteor.userId();
       }
 
 
     });
-
   }
-
   isFuncionario(){
-    let username = Meteor.users.findOne(Meteor.userId()).username;
 
-    if(Usuarios.findOne({matricula:username}).categoriaUsuario === 'funcionario'){
-      return true;
+    if(Meteor.userId() !== null){
+      var username = Meteor.users.findOne(Meteor.userId()).username;
+      if(Usuarios.findOne({matricula:username}).categoriaUsuario === 'funcionario'){
+        return true;
+      }
     }
     return false;
   }
+
+
+
+
 }
 
 const name = 'navLayout';
