@@ -157,10 +157,11 @@
                     <p>Data de Devolução: {{emprestimo.dataDevolucao | date: "dd.MM.y"}}</p>
                     <p>Dias de Atraso: {{emprestimo.diasAtrasados}}</p>
                     <p>Multa: {{emprestimo.multa | currency : "R$ ": 2}}</p>
+                    <p>Renovações Restantes: {{emprestimo.renovacoesRestantes}}</p>
                 </div>
 
+                <button ng-click="$ctrl.renovar(emprestimo)" ng-if="(emprestimo.renovacoesRestantes>0)">Renovar</button>
                 <button ng-click="$ctrl.devolverLivro(emprestimo)" ng-show="$ctrl.isFuncionario()">Devolver</button>
-                <button ng-click="" ng-show="$ctrl.isFuncionario()">Renovar-implementar</button>
 
             </li>
         </ul>

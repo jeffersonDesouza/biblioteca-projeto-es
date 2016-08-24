@@ -35,7 +35,7 @@ class UsuarioDetalhes{
 
         this.podeEmprestarLivro = true;
         this.numeroLivrosEmprestados = 0;
-
+        this.teste = 1;
 
         this.helpers({
             usuario(){
@@ -72,6 +72,7 @@ class UsuarioDetalhes{
 
 
     salvar(){
+
       Usuarios.update({_id:this.usuario._id},{
           $set:{
             name: this.usuario.name,
@@ -79,10 +80,12 @@ class UsuarioDetalhes{
             curso: this.usuario.curso,
             categoriaUsuario: this.usuario.categoriaUsuario,
             multas: this.usuario.multas,
-            podePegarLivros: this.podePegarLivros
+            podePegarLivros: this.podePegarLivros,
+//            renovacoresRestantes: this.usuario.renovacoresRestantes - 1
           }
       });
     }
+
 
 
     jaTemEsteLivro(containerlivro, emprestimosArray){
@@ -103,9 +106,7 @@ class UsuarioDetalhes{
             let dataDeEmprestimo = new Date();
 //            let dataDeDevolucao = new Date(dataDeEmprestimo.getTime() + vinteDiasEmMileSegundos);
 
-
             let dataDeDevolucao = new Date(dataDeEmprestimo.getTime() + umMinutoEmMileSegundos);
-
 
             containerLivro.quantidade--;
 
@@ -119,7 +120,8 @@ class UsuarioDetalhes{
                 'dataEmprestimo': new Date(),
                 'dataDevolucao': dataDeDevolucao,
                 'diasAtrasados':0,
-                'multa':0
+                'multa':0,
+                'renovacoesRestantes': 3
             }
 
             Usuarios.update({_id:this.usuario._id},
@@ -139,6 +141,23 @@ class UsuarioDetalhes{
             this.atualizarPodeEmprestarLivro(this.usuario);
         }
 
+    }
+
+
+    renovar(emprestimoBind){
+
+      Meteor.call("renovar", emprestimoBind, this.usuario._id, function(error, result){
+        if(error){
+          console.log("error ao RENOVAR", error);
+        }
+        if(result){
+
+          console.log("RENOVAR ok", this.teste);
+          this.teste = 10;
+          console.log("RENOVAR ok", this.teste);
+
+        }
+      });
     }
 
 

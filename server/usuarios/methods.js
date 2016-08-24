@@ -36,7 +36,7 @@ export function removerUsuario(usuario, userId){
 
 export function getNomeUsuarioLogadoMethod(userId, nomeUsuario){
     if(this.userId){
-    
+
         nomeUsuario = Meteor.users.findOne(userId).profile.name;
     }
 }
@@ -45,10 +45,41 @@ export function getUsuario(usuarioId){
     return Usuarios.findOne({_id:usuarioId});
 }
 
+export function renovar(emprestimoBind, usuarioId){
+
+        //let usuario = Usuarios.findOne({_id:usuarioId});
+
+        let umMinutoEmMileSegundos = 60000;
+        let vinteDiasEmMileSegundos = 1728000000;
+        let dataDeEmprestimo = new Date();
+
+
+        let dataDeDevolucao = new Date(emprestimoBind.dataDevolucao.getTime() + vinteDiasEmMileSegundos);
+
+
+        let renovacoesRestantes = emprestimoBind.renovacoesRestantes  - 1 ;
+
+        if(renovacoesRestantes >= 0){
+            Usuarios.update({"_id":usuarioId, "emprestimos.idLivro": emprestimoBind.idLivro},
+            {
+              $set:{
+
+                'emprestimos.$.dataDevolucao': dataDeDevolucao,
+                'emprestimos.$.renovacoesRestantes': renovacoesRestantes
+
+              }
+            }
+          );
+        }
+
+}
+
+
 
 Meteor.methods({
     salvarNovoUser,
     removerUsuario,
     getNomeUsuarioLogadoMethod,
-    getUsuario
+    getUsuario,
+    renovar
 });

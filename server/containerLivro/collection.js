@@ -50,6 +50,11 @@ ContainerLivrosSchema = new SimpleSchema({
     disponivel:{
         type: Boolean,
         label:"Disponível"
+    },
+    reservas:{
+      type: [String],
+      label:"Reservas",
+      optional: true
     }
 
 });
