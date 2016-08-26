@@ -32,14 +32,32 @@ Meteor.startup(() => {
     livros.forEach((livros) => {ContainersLivros.insert(livros)});
   }
 
-  if(Meteor.users.find().count() === 0){
+  if(Meteor.users.find().count() <= 1){
 
     const novoUser = {
-      "username": "USUARIO DEFAULT",
+      "username": "1",
       "password": "123123",
+      "profile"{
+           "name":"Funcionario BASE"
+       };
+      }
+
+
+
+     const novoUsuario = {
+      "name":novoUser.profile.name,
+      "matricula": novoUser.username,
+      "curso": "Computação",
+      "categoriaUsuario": "funcionario",
+      "podePegarLivros":true,
+      "emprestimos": [],
+      "multas":0
     };
 
-     Accounts.createUser(novoUser);
+    Accounts.createUser(novoUser);
+
+    Usuarios.insert(novoUsuario);
+
 
   }
 
