@@ -1,7 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { ContainersLivros } from '../api/containerLivro';
 
-Meteor.startup(() => {
+import {Usuarios} from '../api/usuarios/index.js';
+
+ Meteor.startup(() => {
 
     if (ContainersLivros.find().count() === 0) {
     const livros = [
@@ -35,10 +37,10 @@ Meteor.startup(() => {
   if(Meteor.users.find().count() <= 1){
 
     const novoUser = {
-      "username": "1",
+      "username": "0000000000",
       "password": "123123",
       "profile" :{
-           "name":"Funcionario BASE"
+           "name":"BASE"
        }
     };
 
