@@ -6,6 +6,7 @@ import {Meteor} from 'meteor/meteor';
 
 import containerLivroDetalhes from './containerLivroDetalhes.html';
 
+import {Usuarios} from '../../../../api/usuarios/index.js';
 import {ContainersLivros} from '../../../../api/containerLivro/index.js';
 
 
@@ -20,6 +21,8 @@ class ContainerLivroDetalhes{
         this.subscribe('containersLivros');
         this.palavraChaveAntiga ="";
 
+        this.subscribe('usuarios');
+
 
 
         this.helpers({
@@ -32,6 +35,17 @@ class ContainerLivroDetalhes{
             }
         });
     }
+
+    isFuncionario(){
+        let username = Meteor.users.findOne(Meteor.userId()).username;
+        console.log("Categoria: ", Usuarios.findOne({matricula:username}).categoriaUsuario);
+        if(Usuarios.findOne({matricula:username}).categoriaUsuario === 'funcionario'){
+            return true;
+        }
+        return false;
+    }
+
+
 
     salvarLivro(){
         ContainersLivros.update({_id:this.containerLivro._id},{
@@ -73,7 +87,7 @@ class ContainerLivroDetalhes{
     }
 
     editarPalavraChave(palavra){
- 
+
         Meteor.call('editarPalavraChave',this.containerLivro._id, palavra, this.palavraChaveAntiga,
 
             Meteor.userId(),
@@ -88,7 +102,7 @@ class ContainerLivroDetalhes{
             });
 
 
- 
+
         this.toggleInputPalavrasChaves();
     }
 
@@ -153,5 +167,3 @@ export default angular.module('containerLivroDetalhes')
     templateUrl: 'imports/ui/components/containerLivro/containerLivroDetalhes/containerLivroDetalhes.html',
     controller: ContainerLivroDetalhes
 });
-
-

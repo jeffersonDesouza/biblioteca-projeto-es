@@ -9,10 +9,9 @@
 
             <input type="text" ng-model="$ctrl.containerLivro.livro.titulo" class="form-control"
             ng-show="$ctrl.mostrarInputTitulo">
-
-
         </div>
-        <div class="col-md-3">
+
+        <div class="col-md-3" ng-show="$ctrl.isFuncionario()">
             <button class="btn btn-info btn-sm"
             ng-click="$ctrl.toggleInputTitulo()" ng-hide="$ctrl.mostrarInputTitulo">Editar</button>
             <button class="btn btn-info btn-sm"
@@ -28,7 +27,7 @@
 
 
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3" ng-show="$ctrl.isFuncionario()">
             <button class="btn btn-info btn-sm"
             ng-click="$ctrl.toggleInputAutor()" ng-hide="$ctrl.mostrarInputAutor">Editar</button>
             <button class="btn btn-info btn-sm"
@@ -45,7 +44,7 @@
         <input type="text" ng-model="$ctrl.containerLivro.livro.curso" class="form-control"
         ng-show="$ctrl.mostrarInputDepartamento">
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3" ng-show="$ctrl.isFuncionario()">
         <button class="btn btn-info btn-sm"
         ng-click="$ctrl.toggleInputDepartamento()" ng-hide="$ctrl.mostrarInputDepartamento">Editar</button>
         <button class="btn btn-info btn-sm"
@@ -68,7 +67,7 @@
                     <input type="text" ng-model="palavra" ng-show="$ctrl.mostrarInputPalavrasChaves">
 
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3" ng-show="$ctrl.isFuncionario()">
 
                     <button ng-click="$ctrl.getPalavraChaveEditar(palavra)" class="btn btn-info btn-sm"
                     ng-hide="$ctrl.mostrarInputPalavrasChaves">Editar</button>
@@ -81,7 +80,7 @@
 
         </ul>
 
-        <div class="col-md-6 text-center">
+        <div class="col-md-6 text-center" ng-show="$ctrl.isFuncionario()">
             <button class="btn btn-default btn-block"
             ng-click="$ctrl.adicionarPalavrasChaves()">+</button>
         </div>
@@ -100,7 +99,7 @@
 
 
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3" ng-show="$ctrl.isFuncionario()">
         <button class="btn btn-info btn-sm"
         ng-click="$ctrl.toggleInputTipo()" ng-hide="$ctrl.mostrarInputTipo">Editar</button>
         <button class="btn btn-info btn-sm"
@@ -116,7 +115,7 @@
 
 
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3" ng-show="$ctrl.isFuncionario()">
         <button class="btn btn-info btn-sm"
         ng-click="$ctrl.toggleInputPaginas()" ng-hide="$ctrl.mostrarInputPaginas">Editar</button>
         <button class="btn btn-info btn-sm"
@@ -132,7 +131,7 @@
         ng-show="$ctrl.mostrarInputQuantidade">
 
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3" ng-show="$ctrl.isFuncionario()">
         <button class="btn btn-info btn-sm" ng-click="$ctrl.toggleInputQuantidade()"
             ng-hide="$ctrl.mostrarInputQuantidade">Editar</button>
         <button class="btn btn-info btn-sm" ng-click="$ctrl.toggleInputQuantidade()"
@@ -144,24 +143,9 @@
 
 </form>
 
-<div class="row">
-    <div class="col-md-12">
 
-        <h3>Reservas</h3>
-        lista de reservas
-
-    </div>
-
-
-</div>
-
-<br/>
-<br/>
-
-
-<div class="row">
+<div class="row"  ng-show="$ctrl.isFuncionario()">
     <div class="col-md-9">
         <button class="btn btn-danger" ng-click="$ctrl.excluir()" ui-sref="home">Deletar Livro</button>
     </div>
 </div>
-
