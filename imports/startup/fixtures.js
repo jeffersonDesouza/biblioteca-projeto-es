@@ -37,7 +37,7 @@ Meteor.startup(() => {
     const novoUser = {
       "username": "1",
       "password": "123123",
-      "profile"{
+      "profile":{
            "name":"Funcionario BASE"
        };
       }
