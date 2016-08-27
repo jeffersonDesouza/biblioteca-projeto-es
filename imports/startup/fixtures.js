@@ -34,7 +34,7 @@ import {Usuarios} from '../api/usuarios/index.js';
     livros.forEach((livros) => {ContainersLivros.insert(livros)});
   }
 
-  if(Meteor.users.find().count() <= 5){
+  if(Meteor.users.find().count() === 0){
 
     const novoUser = {
       "username": "0000000000",
