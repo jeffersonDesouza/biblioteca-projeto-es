@@ -16,6 +16,7 @@ class NavLayout{
 
       $reactive(this).attach($scope);
 
+      this.showMenuClass = true;
 
     this.subscribe('usuarios');
 
@@ -48,7 +49,9 @@ class NavLayout{
     return false;
   }
 
-
+  toggleShowMenuClass(){
+    return this.showMenuClass = !this.showMenuClass;
+  }
 
 
 }

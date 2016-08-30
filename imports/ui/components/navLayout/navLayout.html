@@ -1,32 +1,42 @@
-<div class="nav-layout-class">
+<button id="hide-menu-button" class="btn btn-default" ng-click="$ctrl.toggleShowMenuClass()">
+      <i class="mdi mdi-menu"></i>
+</button>
 
+<div class="nav-layout-class" ng-show="$ctrl.showMenuClass">
 
-    <div>
-        <a ui-sref="usuarioDetalhes({usuarioId:$ctrl.usuario._id})">Meu Perfil</a>
+<ul nav nav-pills nav-stacked>
+    <li>
+        <a ui-sref="home">Página Inicial</a>
+    </li>
+
+    <div ng-show="$ctrl.isLoggedIn">
+      <li>
+           <a ui-sref="usuarioDetalhes({usuarioId:$ctrl.usuario._id})">
+             <i class="mdi mdi-home"></i>
+             <span class="menu-text">Meu Perfil</span>
+           </a>
+      </li>
     </div>
 
-    <div>
+    <li>
         <a ui-sref="livros">Pesquisar Livro</a>
-    </div>
-
-    
+    </li>
 
     <div ng-show="$ctrl.isLoggedIn">
 
-      <div ng-show="$ctrl.isFuncionario()">
-          <a ui-sref="usuarios">Pesquisar Usuário</a>
-      </div>
+        <li ng-show="$ctrl.isFuncionario()">
+            <a ui-sref="usuarios">Emprestar/Devolver Livro</a>
+        </li>
 
-      <div ng-show="$ctrl.isFuncionario()">
-          <a ui-sref="add-livro">Adicioanr Livro</a>
-      </div>
+        <li ng-show="$ctrl.isFuncionario()">
+            <a ui-sref="add-livro">Adicioanr Livro</a>
+        </li>
 
-      <div ng-show="$ctrl.isFuncionario()">
-          <a ui-sref="usuario-add">Adicionar Usuário</a>
-      </div>
+        <li ng-show="$ctrl.isFuncionario()">
+            <a ui-sref="usuario-add">Adicionar Usuário</a>
+        </li>
 
     </div>
-
-
+</ul>
 
 </div>

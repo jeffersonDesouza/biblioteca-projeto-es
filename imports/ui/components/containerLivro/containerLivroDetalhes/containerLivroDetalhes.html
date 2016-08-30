@@ -3,15 +3,13 @@
 <form>
     <div class="row form-group">
 
-
         <div class="col-md-9">
             Título: <label ng-hide="$ctrl.mostrarInputTitulo">{{$ctrl.containerLivro.livro.titulo}}</label>
-
             <input type="text" ng-model="$ctrl.containerLivro.livro.titulo" class="form-control"
             ng-show="$ctrl.mostrarInputTitulo">
         </div>
 
-        <div class="col-md-3" ng-show="$ctrl.isFuncionario()">
+        <div class="col-md-3" ng-show="$ctrl.isFuncionario()" ng-if="$ctrl.isLoggedIn">
             <button class="btn btn-info btn-sm"
             ng-click="$ctrl.toggleInputTitulo()" ng-hide="$ctrl.mostrarInputTitulo">Editar</button>
             <button class="btn btn-info btn-sm"
@@ -19,132 +17,101 @@
         </div>
 
         <div class="col-md-9">
-
             Autor: <label ng-hide="$ctrl.mostrarInputAutor">{{$ctrl.containerLivro.livro.autor}}</label>
-
             <input type="text" ng-model="$ctrl.containerLivro.livro.autor" class="form-control"
             ng-show="$ctrl.mostrarInputAutor">
-
-
         </div>
-        <div class="col-md-3" ng-show="$ctrl.isFuncionario()">
+
+        <div class="col-md-3" ng-show="$ctrl.isFuncionario()" ng-if="$ctrl.isLoggedIn">
             <button class="btn btn-info btn-sm"
             ng-click="$ctrl.toggleInputAutor()" ng-hide="$ctrl.mostrarInputAutor">Editar</button>
             <button class="btn btn-info btn-sm"
             ng-click="$ctrl.toggleInputAutor()" ng-show="$ctrl.mostrarInputAutor">OK</button>
         </div>
 
-
         <div class="col-md-9" >
-
             Departamento: <label ng-hide="$ctrl.mostrarInputDepartamento">
             {{$ctrl.containerLivro.livro.curso}}
         </label>
-
         <input type="text" ng-model="$ctrl.containerLivro.livro.curso" class="form-control"
-        ng-show="$ctrl.mostrarInputDepartamento">
+            ng-show="$ctrl.mostrarInputDepartamento">
     </div>
-    <div class="col-md-3" ng-show="$ctrl.isFuncionario()">
+
+    <div class="col-md-3" ng-show="$ctrl.isFuncionario()" ng-if="$ctrl.isLoggedIn">
         <button class="btn btn-info btn-sm"
         ng-click="$ctrl.toggleInputDepartamento()" ng-hide="$ctrl.mostrarInputDepartamento">Editar</button>
         <button class="btn btn-info btn-sm"
         ng-click="$ctrl.toggleInputDepartamento()" ng-show="$ctrl.mostrarInputDepartamento">OK</button>
     </div>
 
-
     <div >
         <ul>
             <div class="col-md-12">
                 <h3>Palavras chaves:</h3>
             </div>
-
-
             <li ng-repeat="palavra in $ctrl.containerLivro.livro.palavrasChaves">
-
                 <div class="col-md-9">
                     <label ng-hide="$ctrl.mostrarInputPalavrasChaves">{{palavra}}</label>
-
                     <input type="text" ng-model="palavra" ng-show="$ctrl.mostrarInputPalavrasChaves">
-
                 </div>
-                <div class="col-md-3" ng-show="$ctrl.isFuncionario()">
 
+                <div class="col-md-3" ng-show="$ctrl.isFuncionario()" ng-if="$ctrl.isLoggedIn">
                     <button ng-click="$ctrl.getPalavraChaveEditar(palavra)" class="btn btn-info btn-sm"
                     ng-hide="$ctrl.mostrarInputPalavrasChaves">Editar</button>
-
                     <button ng-click="$ctrl.editarPalavraChave(palavra)" class="btn btn-info btn-sm"
                     ng-show="$ctrl.mostrarInputPalavrasChaves">OK</button>
-
                 </div>
             </li>
-
         </ul>
 
-        <div class="col-md-6 text-center" ng-show="$ctrl.isFuncionario()">
+        <div class="col-md-6 text-center" ng-show="$ctrl.isFuncionario()" ng-if="$ctrl.isLoggedIn">
             <button class="btn btn-default btn-block"
             ng-click="$ctrl.adicionarPalavrasChaves()">+</button>
         </div>
     </div>
 
-
-
-
-
     <div class="col-md-9">
-
         <label ng-hide="$ctrl.mostrarInputTipo">Tipo: {{$ctrl.containerLivro.livro.tipo}}</label>
-
         <input type="text" ng-model="$ctrl.containerLivro.livro.tipo" class="form-control"
         ng-show="$ctrl.mostrarInputTipo">
-
-
     </div>
-    <div class="col-md-3" ng-show="$ctrl.isFuncionario()">
+
+    <div class="col-md-3" ng-show="$ctrl.isFuncionario()" ng-if="$ctrl.isLoggedIn">
         <button class="btn btn-info btn-sm"
         ng-click="$ctrl.toggleInputTipo()" ng-hide="$ctrl.mostrarInputTipo">Editar</button>
         <button class="btn btn-info btn-sm"
         ng-click="$ctrl.toggleInputTipo()" ng-show="$ctrl.mostrarInputTipo">OK</button>
     </div>
 
-
     <div class="col-md-9" >
         <label  ng-hide="$ctrl.mostrarInputPaginas">Páginas: {{$ctrl.containerLivro.livro.paginas}}</label>
-
         <input type="text" ng-model="$ctrl.containerLivro.livro.paginas" class="form-control"
         ng-show="$ctrl.mostrarInputPaginas">
-
-
     </div>
-    <div class="col-md-3" ng-show="$ctrl.isFuncionario()">
+
+    <div class="col-md-3" ng-show="$ctrl.isFuncionario()" ng-if="$ctrl.isLoggedIn">
         <button class="btn btn-info btn-sm"
         ng-click="$ctrl.toggleInputPaginas()" ng-hide="$ctrl.mostrarInputPaginas">Editar</button>
         <button class="btn btn-info btn-sm"
         ng-click="$ctrl.toggleInputPaginas()" ng-show="$ctrl.mostrarInputPaginas">OK</button>
     </div>
 
-
     <div class="col-md-9">
-
         <label ng-hide="$ctrl.mostrarInputQuantidade">Quantidade: {{$ctrl.containerLivro.quantidade}}</label>
-
         <input type="number" ng-model="$ctrl.containerLivro.quantidade" class="form-control"
         ng-show="$ctrl.mostrarInputQuantidade">
-
     </div>
-    <div class="col-md-3" ng-show="$ctrl.isFuncionario()">
+
+    <div class="col-md-3" ng-show="$ctrl.isFuncionario()" ng-if="$ctrl.isLoggedIn">
         <button class="btn btn-info btn-sm" ng-click="$ctrl.toggleInputQuantidade()"
             ng-hide="$ctrl.mostrarInputQuantidade">Editar</button>
         <button class="btn btn-info btn-sm" ng-click="$ctrl.toggleInputQuantidade()"
             ng-show="$ctrl.mostrarInputQuantidade">OK</button>
     </div>
-
 </div>
-
-
 </form>
 
-
-<div class="row"  ng-show="$ctrl.isFuncionario()">
+<div class="row"  ng-show="$ctrl.isFuncionario()" ng-if="$ctrl.isLoggedIn">
     <div class="col-md-9">
         <button class="btn btn-danger" ng-click="$ctrl.excluir()" ui-sref="home">Deletar Livro</button>
     </div>

@@ -32,16 +32,24 @@ class ContainerLivroDetalhes{
             },
             palavrasChavesArray(){
                 return this.containerLivro.livro.palavrasChaves;
+            },
+            isLoggedIn(){
+              return !!Meteor.userId();
             }
         });
     }
 
     isFuncionario(){
         let username = Meteor.users.findOne(Meteor.userId()).username;
-        console.log("Categoria: ", Usuarios.findOne({matricula:username}).categoriaUsuario);
+
+                if(!Meteor.userId()){
+                  return false;
+                }
+
         if(Usuarios.findOne({matricula:username}).categoriaUsuario === 'funcionario'){
             return true;
         }
+
         return false;
     }
 

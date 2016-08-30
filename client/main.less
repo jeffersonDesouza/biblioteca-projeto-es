@@ -36,7 +36,6 @@ header{
       display: block;
       text-align: center;
       width: 100%;
-
       padding: 30px 30px;
       margin-top: 10px;
       margin-bottom: 20px;
@@ -51,34 +50,8 @@ header{
       color: #fff;
       text-decoration: none;
     }
-     a:visited{
-      background-color:#pink;
-      color: #fff;
-      text-decoration: none;
-    }
+
 }
-
-.perfil-link {
-        color: #000000;
-  a{
-
-      background-color: #fff;
-      color: #000000;
-
-      text-decoration: none;
-      text-align: center;
-      padding: 2px;
-      margin: 0px 0px 0px 10px;
-
-
-  }    a:hover{
-      background-color: #fff;
-      color: #000;
-      text-decoration: none;
-    }
-}
-
-
 
 
 .lista-link{
@@ -89,4 +62,37 @@ header{
 
 ul{
   list-style-type: none;
+}
+
+#hide-menu-button{
+  display: none;
+}
+@media only screen and (max-width: 768px) {
+
+    #hide-menu-button{
+      display: inline;
+      position: relative;
+      float: right;
+      margin-right: 10px;
+    }
+
+        /* For mobile phones: */
+    [class*="col-"] {
+        width: 100%;
+    }
+
+    .nav-layout-class{
+      position: absolute;
+      left: 0px;
+      padding: 5px;
+      margin: 5px;
+      z-index: 1;
+      width: 200px;
+      a{
+        padding: 5px;
+        margin: 5px;
+      }
+
+    }
+
 }
