@@ -160,7 +160,10 @@
                     <p>Renovações Restantes: {{emprestimo.renovacoesRestantes}}</p>
                 </div>
 
-                <button ng-click="$ctrl.renovar(emprestimo)" ng-if="(emprestimo.renovacoesRestantes>0)">Renovar</button>
+                <button ng-click="$ctrl.renovar(emprestimo)" ng-if="(emprestimo.renovacoesRestantes>0)"
+                          ng-show="$ctrl.usuario.podePegarLivros">
+                  Renovar
+                </button>
                 <button ng-click="$ctrl.devolverLivro(emprestimo)" ng-show="$ctrl.isFuncionario()">Devolver</button>
 
             </li>
