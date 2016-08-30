@@ -6,35 +6,56 @@
 
 <ul nav nav-pills nav-stacked>
     <li>
-        <a ui-sref="home">Página Inicial</a>
+        <a ui-sref="home"><i class="mdi mdi-home mdi-36px"></i>Página Inicial</a>
     </li>
 
     <div ng-show="$ctrl.isLoggedIn">
       <li>
            <a ui-sref="usuarioDetalhes({usuarioId:$ctrl.usuario._id})">
-             <i class="mdi mdi-home"></i>
+             <i class="mdi mdi-account mdi-36px"></i>
              <span class="menu-text">Meu Perfil</span>
            </a>
       </li>
     </div>
 
     <li>
-        <a ui-sref="livros">Pesquisar Livro</a>
+        <a ui-sref="livros">
+          <i class="mdi mdi-magnify mdi-36px"></i>
+          <span class="menu-text">Pesquisar Livro</span>
+        </a>
     </li>
 
     <div ng-show="$ctrl.isLoggedIn">
 
         <li ng-show="$ctrl.isFuncionario()">
-            <a ui-sref="usuarios">Emprestar/Devolver Livro</a>
+            <a ui-sref="usuarios">
+              <i class="mdi mdi-book mdi-36px"></i>
+              <span class="menu-text">Emprestar/Devolver Livro</span>
+            </a>
         </li>
 
         <li ng-show="$ctrl.isFuncionario()">
-            <a ui-sref="add-livro">Adicioanr Livro</a>
+            <a ui-sref="add-livro">
+              <i class="mdi book-plus mdi-36px"></i>
+              <span class="menu-text">Adicioanr Livro</span>
+            </a>
         </li>
 
         <li ng-show="$ctrl.isFuncionario()">
-            <a ui-sref="usuario-add">Adicionar Usuário</a>
+            <a ui-sref="usuario-add">
+              <i class="mdi mdi-account-multiple-plus mdi-36px"></i>
+                <span class="menu-text">Adicionar Usuário</span>
+            </a>
         </li>
+
+
+        <li ng-show="$ctrl.isFuncionario()">
+            <a ui-sref="usuarios">
+              <i class="mdi mdi-account-search mdi-36px"></i>
+              <span class="menu-text">Pesquisar Usuário</span>
+            </a>
+        </li>
+
 
     </div>
 </ul>
